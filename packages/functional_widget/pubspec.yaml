@@ -9,11 +9,13 @@ environment:
 resolution: workspace
 
 dependencies:
+  functional_widget_annotation:
+    path: ../functional_widget_annotation
+
   analyzer: ">=6.9.0 <8.0.0"
   build: ^3.0.0
   build_config: ^1.0.0
   meta: ^1.2.0
-  functional_widget_annotation: ^0.10.0
   source_gen: ^3.0.0
   code_builder: ^4.0.0
   collection: ^1.0.0
