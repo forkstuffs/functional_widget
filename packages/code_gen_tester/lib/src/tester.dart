@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/dart/element/element2.dart';
 import 'package:build/build.dart';
 import 'package:code_gen_tester/src/analysis_utils.dart';
 import 'package:crypto/crypto.dart';
@@ -91,7 +92,7 @@ $output
       [BuildStep? buildStep]) async {
     final e = library
         .annotatedWith(generator.typeChecker)
-        .firstWhere((e) => e.element.name == name);
+        .firstWhere((e) => e.element.name3 == name);
     final dynamic generated = await generator.generateForAnnotatedElement(
       e.element,
       e.annotation,
@@ -125,7 +126,7 @@ class _BuildStepImpl implements BuildStep {
   AssetId get inputId => throw UnimplementedError();
 
   @override
-  Future<LibraryElement> get inputLibrary => throw UnimplementedError();
+  Future<LibraryElement2> get inputLibrary => throw UnimplementedError();
 
   @override
   Resolver get resolver => _ResolverImpl();
@@ -192,12 +193,12 @@ class _BuildStepImpl implements BuildStep {
 
 class _ResolverImpl implements Resolver {
   @override
-  Future<AssetId> assetIdForElement(Element element) {
+  Future<AssetId> assetIdForElement(Element2 element) {
     throw UnimplementedError();
   }
 
   @override
-  Future<AstNode?> astNodeFor(Element element, {bool resolve = false}) {
+  Future<AstNode?> astNodeFor(Fragment fragment, {bool resolve = false}) {
     return Future.error('UnimplementedError');
   }
 
@@ -208,7 +209,7 @@ class _ResolverImpl implements Resolver {
   }
 
   @override
-  Future<LibraryElement?> findLibraryByName(String libraryName) {
+  Future<LibraryElement2?> findLibraryByName(String libraryName) {
     throw UnimplementedError();
   }
 
@@ -218,10 +219,10 @@ class _ResolverImpl implements Resolver {
   }
 
   @override
-  Stream<LibraryElement> get libraries => throw UnimplementedError();
+  Stream<LibraryElement2> get libraries => throw UnimplementedError();
 
   @override
-  Future<LibraryElement> libraryFor(AssetId assetId,
+  Future<LibraryElement2> libraryFor(AssetId assetId,
       {bool allowSyntaxErrors = false}) {
     throw UnimplementedError();
   }
